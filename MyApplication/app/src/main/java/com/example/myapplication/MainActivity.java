@@ -24,18 +24,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        //StrictMode.setThreadPolicy(policy);
+//recuperation des composants par id
         final EditText editTextQuery=findViewById(R.id.editTextQuery);
         Button buttonSearch=findViewById(R.id.buttonSearch);
         ListView listViewUsers=findViewById(R.id.listViewUsers);
         //final ArrayAdapter<String> arrayAdapter=new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,data);
         UsersListViewModel listViewModel=new UsersListViewModel(this,R.layout.users_list_view_layout,data);
         listViewUsers.setAdapter(listViewModel);
+        //on utilise la bibliotheque retrofit pour asurer la communication avec l'api rest
         final Retrofit retrofit=new Retrofit.Builder()
                 .baseUrl("https://api.github.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+        // lancer la requette pour chercher dans github
         buttonSearch.setOnClickListener(v -> {
             String query=editTextQuery.getText().toString();
             Log.i("",query);

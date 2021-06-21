@@ -10,8 +10,10 @@ import retrofit2.http.Query;
 import java.util.List;
 
 public interface GitRepoServiceAPI {
+    // pour recuperer les users
     @GET("search/users")
-    public Call<GitUsersResponse> searchUsers(@Query("q") String query);
+    Call<GitUsersResponse> searchUsers(@Query("q") String query);
+    // pour recuperer les repos pour chaque user
     @GET("users/{u}/repos")
-    public Call<List<GitRepo>> userRepositories(@Path("u") String login);
+    Call<List<GitRepo>> userRepositories(@Path("u") String login);
 }

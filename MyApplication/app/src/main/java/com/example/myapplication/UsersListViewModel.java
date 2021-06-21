@@ -16,8 +16,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import java.net.URL;
 import java.util.List;
 
+//un model dans lequel en stoque la liste des users
 public class UsersListViewModel extends ArrayAdapter<GitUser> {
-    private int resource;
+    private final int resource;
     public UsersListViewModel(@NonNull Context context, int resource, List<GitUser> data) {
         super(context, resource,data);
         this.resource=resource;

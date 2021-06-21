@@ -18,6 +18,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import java.util.ArrayList;
 import java.util.List;
 
+
+// activity pour afficher les repos de user
+
 public class RepositoryActivity extends AppCompatActivity {
     List<String> data=new ArrayList<>();
     @Override
@@ -39,6 +42,7 @@ public class RepositoryActivity extends AppCompatActivity {
         GitRepoServiceAPI gitRepoServiceAPI=retrofit.create(GitRepoServiceAPI.class);
         Call<List<GitRepo>> reposCall=gitRepoServiceAPI.userRepositories(login);
         reposCall.enqueue(new Callback<List<GitRepo>>() {
+            // la liste des repos de chaque user
             @Override
             public void onResponse(Call<List<GitRepo>> call, Response<List<GitRepo>> response) {
                 if(!response.isSuccessful()){
